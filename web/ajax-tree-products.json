@@ -1,6 +1,0 @@
-[
-    {"id":1,"title":"file 1","order":5647,"countParents":1,"countChild":8,  "expanded": true, "folder": false},
-    {"id":2,"title":"file 2","order":4547,"countParents":1,"countChild":6,  "expanded": true, "folder": false},
-    {"id":3,"title":"file 3","order":4757,"countParents":2,"countChild":15, "expanded": true, "folder": false},
-    {"id":4,"title":"file 4","order":4875,"countParents":2,"countChild":3, "expanded": true, "folder": false}
-]

@@ -12,11 +12,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class S
 {
+    const USER = 415;
+    const TYPE = 1;
+    const STATUS = 10;
+    const SHARE = 7;
+
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
-     * @ORM\Id     
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="s_seq", allocationSize=1,initialValue=1) 
      */
     private $id;
 
@@ -75,16 +82,16 @@ class S
     private $lastUpdateDate;
 
 
-    public function __construct($type, $name = null)
+    public function __construct($name = null)
     {
         $this->id = rand();
-        $this->type = $type;
+        $this->type = $this::TYPE;
         $this->name = $name;
-        $this->share = 7;
-        $this->status = 10;
-        $this->createUser  = 415;
+        $this->share = $this::SHARE;
+        $this->status = $this::STATUS;
+        $this->createUser  = $this::USER;
         $this->createDate = new \DateTime();
-        $this->lastUpdateUser = 415;
+        $this->lastUpdateUser = $this::USER;
         $this->lastUpdateDate = new \DateTime();
     }
 

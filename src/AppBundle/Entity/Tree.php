@@ -51,7 +51,7 @@ class Tree
      */
     public function setChild($child)
     {
-        $this->child = $child;
+        $this->Child = $child;
 
         return $this;
     }
@@ -63,7 +63,7 @@ class Tree
      */
     public function getChild()
     {
-        return $this->child;
+        return $this->Child;
     }
 
     /**
@@ -75,7 +75,7 @@ class Tree
      */
     public function setOrder($order)
     {
-        $this->order = $order;
+        $this->Order = $order;
 
         return $this;
     }
@@ -87,7 +87,7 @@ class Tree
      */
     public function getOrder()
     {
-        return $this->order;
+        return $this->Order;
     }
 
     /**
