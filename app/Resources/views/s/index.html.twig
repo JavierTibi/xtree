@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ss list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Share</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Version</th>
+                <th>Icon</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for  in ss %}
+            <tr>
+                <td><a href="{{ path('s_show', { 'id': .id }) }}">{{ .id }}</a></td>
+                <td>{{ .type }}</td>
+                <td>{{ .name }}</td>
+                <td>{{ .share }}</td>
+                <td>{{ .owner }}</td>
+                <td>{{ .status }}</td>
+                <td>{{ .version }}</td>
+                <td>{{ .icon }}</td>
+                <td>{{ .notes }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('s_show', { 'id': .id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('s_edit', { 'id': .id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('s_new') }}">Create a new </a>
+        </li>
+    </ul>
+{% endblock %}

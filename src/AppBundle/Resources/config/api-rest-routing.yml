@@ -1,0 +1,4 @@
+api_tree:
+    type: rest
+    resource: "@AppBundle/Controller/TreeController.php"
+    name_prefix:  api_tree_

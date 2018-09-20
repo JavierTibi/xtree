@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * S
+ * Class S
  *
  * @ORM\Table(name="""openspec"".""S""")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SRepository")

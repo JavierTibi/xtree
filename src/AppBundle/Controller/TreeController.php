@@ -9,20 +9,24 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
-use AppBundle\Entity\User;
 
 class TreeController extends FOSRestController
 {    
     /**
-     * @Rest\Get("/getTree")
-     */    
-    public function getAction()
+     * @Route("/getTree")         
+     */
+    public function getTreeAction()
     {
-      $restresult = $this->getDoctrine()->getRepository('AppBundle:Tree')->findAll();
-        if ($restresult === null) {
-          return new View("there are no tree exist", Response::HTTP_NOT_FOUND);
-        }
-        return $restresult;
+        $em = $this->getDoctrine()->getManager();       
+        return $em->getRepository('AppBundle:Tree')->getTree();
+  
+
+        /*$data = array(
+            array("id" => 1, "name" => "file 1", "order" => 5647, "countParents" => 1, "countChild" => 8),
+            array("id" => 2, "name" => "file 2", "order" => 4547, "countParents" => 1, "countChild" => 6),
+            array("id" => 3, "name" => "file 3", "order" => 4757, "countParents" => 2, "countChild" => 15),
+            array("id" => 4, "name" => "file 4", "order" => 4875, "countParents" => 2, "countChild" => 3)                       
+        );*/                                             
     }
 
         /**
@@ -42,5 +46,30 @@ class TreeController extends FOSRestController
         $em->flush();
       
         return $node;
+    }
+
+    /**
+     * @Route("/getChild/{idNode}")
+     */
+    public function getChildAction($idNode)
+    {
+        $em = $this->getDoctrine()->getManager();       
+        return $em->getRepository('AppBundle:Tree')->getTreeByNodeId($idNode);
+        
+        /* $data = array(
+            array("title" => "file.txt", "key" => 1),
+            
+            array(
+                "title" => "Resources", 
+                "key" => 2, 
+                "folder" => true, 
+                "children" => array(
+                    array("title" => "Resources child 1", "key" => 3 ),
+                    array("title" => "Resources child 2", "key" => 4 )
+                )
+            )
+        );
+                                 
+        return $data; */
     }
 }
