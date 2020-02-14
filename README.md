@@ -1,77 +1,36 @@
-Symfony Standard Edition
+OpenSpect Test Task (FancyTree)
 ========================
 
-**WARNING**: This distribution does not support Symfony 4. See the
-[Installing & Setting up the Symfony Framework][15] page to find a replacement
-that fits you best.
+For the frontend the solution was based on a simple vuejs project.
+That decision was made because the CLI it provides make it easy and fast to try things out.
+It is very easy to build and serve the application, also using npm is a great helper in order to
+download and manage dependencies. It also inits git which makes it great for keeping an eye on the changes, stash them, discard them, play around basically.
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+The most difficult part this test presented was the integration with the FancyTree.
+Besides it is based on jquery, the problem it denotes does not come only from its architecture but its API and documentation.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+The documentation is scattered among different pages and it is not clear in many ways.
+The place where a good API is missed the most is when it is a requirement to persist the representation of the tree.
+This includes adding nodes, removing, renaming (the Tree assumes every node will have a title property which in our case was not, and it shouldn't assume such a thing).
 
-What's inside?
---------------
+All the notifications about the changes to the three are being handles on the "modifyChild" function as there was not other way pointed out in the documentation
+to tackle this task.
+It is remarkable that the Tree provides a persist plugin and its sole effect is to persist in local or session storage the current aesthetics aspect of the tree.
+Wheter a node is selected, or if it is folded or unfolded, etc. But nothing like I created a new node, removed, dragged, etc.
 
-The Symfony Standard Edition is configured with the following defaults:
+There were certain things that given the amount of time we had were not possible to create a workaround for. One of those is the ability to drag and drop a branch from the tree and place it elsewhere (meaning in another node).
+Another known bug is that when a child is created its parent children count is not updated.
 
-  * An AppBundle you can use to start coding;
+For the communication with the rest api the HTML5 Web Api was used in order to give it a try, so we wouldn't recommend trying this in old browsers.
 
-  * Twig as the only configured template engine;
+It would have been desirable to use a better component instead of a single select such as select2 given the amount of options with a better user experience.
 
-  * Doctrine ORM/DBAL;
+We would have used another Tree library for this test althought it looks pretty nice.
 
-  * Swiftmailer;
 
-  * Annotations enabled for everything.
+For the backend we developed a SaaS with a rest API implemented on symphony as requested.
+We had a two layered architecture (controllers for the rest API and repository for the communication with the DB) but it would
+have been desirable to have a third layer for the services in the middle to make a better separation of concerns. There could be also
+other traversal layers such as for securization, logging, auditing, but those where out of the scope of this test.
 
-It comes pre-configured with the following bundles:
-
-  * **FrameworkBundle** - The core Symfony framework bundle
-
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
-
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
-
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
-[15]: https://symfony.com/doc/current/setup.html
+The backend was tested in isolation with postman, it would have been preferrable to have the time to implement proper unit tests and documentation as well.
