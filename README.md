@@ -1,4 +1,4 @@
-OpenSpect Test Task (FancyTree)
+OpenSpec Test Task (FancyTree)
 ========================
 
 For the frontend the solution was based on a simple vuejs project.
